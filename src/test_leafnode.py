@@ -21,12 +21,7 @@ class TestLeafNode(unittest.TestCase):
         )
 
     def test_no_value_raise_error(self):
-        node = LeafNode("a", "", {"href": "www.google.com", "target": "_blank"})
-        with self.assertRaises(ValueError):
-            node.to_html()
-
-        node.value = None
-
+        node = LeafNode("a", None, {"href": "www.google.com", "target": "_blank"})
         with self.assertRaises(ValueError):
             node.to_html()
 

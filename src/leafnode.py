@@ -4,14 +4,14 @@ from htmlnode import HTMLNode
 class LeafNode(HTMLNode):
     def __init__(
         self,
-        tag: str,
-        value: str,
+        tag: str | None,
+        value: str | None,
         props: dict[str, str] | None = None,
     ):
         super().__init__(tag=tag, value=value, props=props)
 
     def to_html(self):
-        if not self.value:
+        if self.value is None:
             raise ValueError()
 
         if not self.tag:

@@ -20,6 +20,20 @@ class TestLeafNode(unittest.TestCase):
             node.to_html(), '<a href="www.google.com" target="_blank">Click mich!</a>'
         )
 
+    def test_no_value_raise_error(self):
+        node = LeafNode("a", "", {"href": "www.google.com", "target": "_blank"})
+        with self.assertRaises(ValueError):
+            node.to_html()
+
+        node.value = None
+
+        with self.assertRaises(ValueError):
+            node.to_html()
+
+    def test_returns_raw_value_if_no_tag(self):
+        node = LeafNode("", "RAW VALUE", {"href": "www.google.com", "target": "_blank"})
+        self.assertEqual("RAW VALUE", node.to_html())
+
 
 if __name__ == "__main__":
     unittest.main()

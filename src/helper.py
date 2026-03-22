@@ -1,3 +1,4 @@
+from enum import Enum
 import re
 
 from textnode import TextType, TextNode
@@ -113,3 +114,53 @@ def markdown_to_blocks(markdown: str):
         blocks.append(stripped_block)
 
     return blocks
+
+
+class BlockType(Enum):
+    PARAGRAPH = "paragraph"
+    HEADING = "heading"
+    CODE = "CODE"
+    QUOTE = "QUOTE"
+    UNORDERED_LIST = "UNORDERED_LIST"
+    ORDERED_LIST = "ordered_list"
+
+
+def block_to_block_type(markdown_block: str):
+    heading_re = r"^#{1,6}\s[a-zA-Z\d]"
+
+    # check headings blocks
+    if re.match(heading_re, markdown_block):
+        return BlockType.HEADING
+
+    # check code blocks
+    if markdown_block.startswith("```\n") and markdown_block.endswith("```"):
+        return BlockType.CODE
+
+    # check quote blocks
+    if markdown_block.startswith(("> ", ">")):
+        for line in markdown_block.split("\n"):
+            if line.startswith(("> ", ">")):
+                continue
+            return BlockType.PARAGRAPH
+        return BlockType.QUOTE
+
+    # check unordered list block
+    if markdown_block.startswith("- "):
+        for line in markdown_block.split("\n"):
+            if line.startswith("- "):
+                continue
+            return BlockType.PARAGRAPH
+        return BlockType.UNORDERED_LIST
+
+    # check ordered list block
+    if markdown_block.startswith("1. "):
+        lines = markdown_block.split("\n")
+        count = 1
+        for i in range(0, len(lines)):
+            if lines[i].startswith(f"{count}. "):
+                count += 1
+                continue
+            return BlockType.PARAGRAPH
+        return BlockType.ORDERED_LIST
+
+    return BlockType.PARAGRAPH

@@ -96,5 +96,20 @@ def text_to_textnodes(text):
     return nodes
 
 
-# text = "This is **text** with an _italic_ word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)"
-# text_to_textnodes(text)
+def markdown_to_blocks(markdown: str):
+    if not markdown:
+        return []
+
+    blocks = []
+
+    for block in markdown.split("\n\n"):
+        if not block:
+            continue
+
+        stripped_block = block.strip()
+
+        if not stripped_block:
+            continue
+        blocks.append(stripped_block)
+
+    return blocks

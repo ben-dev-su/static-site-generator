@@ -47,13 +47,14 @@ class TestBlockToBlockType(unittest.TestCase):
     def test_block_to_block_type_code(self):
         md_block = """```
         Hello World
-        ```"""
+```"""
         block_type = block_to_block_type(md_block)
         self.assertEqual(BlockType.CODE, block_type)
 
     def test_block_to_block_type_not_code_empty(self):
         md_block = """```
-        ```"""
+
+```"""
         block_type = block_to_block_type(md_block)
         self.assertEqual(BlockType.CODE, block_type)
 

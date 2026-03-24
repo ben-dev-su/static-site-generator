@@ -1,6 +1,6 @@
 import unittest
 
-from helper import block_to_block_type, BlockType
+from markdown_blocks import block_to_block_type, BlockType
 
 
 # paragraph

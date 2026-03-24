@@ -1,7 +1,4 @@
-import re
-from htmlnode import HTMLNode
-from parentnode import ParentNode
-from leafnode import LeafNode
+from htmlnode import ParentNode
 from helper import markdown_to_blocks, block_to_block_type, text_to_textnodes, BlockType
 from textnode import text_node_to_html_node, TextNode, TextType
 

@@ -1,5 +1,6 @@
 from htmlnode import ParentNode
-from helper import markdown_to_blocks, block_to_block_type, text_to_textnodes, BlockType
+from helper import BlockType, markdown_to_blocks, block_to_block_type
+from inline_markdown import text_to_textnodes
 from textnode import text_node_to_html_node, TextNode, TextType
 
 # 1. first markdown to blocks

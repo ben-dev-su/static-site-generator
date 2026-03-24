@@ -98,12 +98,9 @@ def text_to_textnodes(text):
 
 
 def markdown_to_blocks(markdown: str):
-    if not markdown:
-        return []
-
-    blocks = []
-
-    for block in markdown.split("\n\n"):
+    blocks = markdown.split("\n\n")
+    filtered_blocks = []
+    for block in blocks:
         if not block:
             continue
 
@@ -111,9 +108,9 @@ def markdown_to_blocks(markdown: str):
 
         if not stripped_block:
             continue
-        blocks.append(stripped_block)
+        filtered_blocks.append(stripped_block)
 
-    return blocks
+    return filtered_blocks
 
 
 class BlockType(Enum):

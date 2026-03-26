@@ -4,6 +4,21 @@ from inline_markdown import extract_title
 from markdown_blocks import markdown_to_html_node
 
 
+def generate_page_recursively(from_dir_path, template_path, dest_dir_path):
+    dir_content = os.listdir(from_dir_path)
+    if not dir_content:
+        return
+
+    for element in dir_content:
+        from_path = os.path.join(from_dir_path, element)
+        dest_path = os.path.join(dest_dir_path, element.replace(".md", ".html"))
+        print(f" * {from_path} -> {dest_path}")
+        if os.path.isfile(from_path):
+            generate_page(from_path, template_path, dest_path)
+        else:
+            generate_page_recursively(from_path, template_path, dest_path)
+
+
 def generate_page(from_path, template_path, dest_path):
     print(f"* {from_path} {template_path} -> {dest_path}")
 

@@ -33,6 +33,12 @@ Here's the deal, **I like Tolkien**.
 8. Sauron
 9. Aragorn
 
-Want to get in touch? [Contact me here](/contact).
+Here's what `elflang` looks like (the perfect coding language):
 
-This site was generated with a custom-built static site generator.
+```
+func main(){
+    fmt.Println("Aiya, Ambar!")
+}
+```
+
+Want to get in touch? [Contact me here](/contact).
